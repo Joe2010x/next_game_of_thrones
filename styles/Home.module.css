@@ -12,6 +12,22 @@
   align-items: center;
 }
 
+.logoGT {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  padding: 1rem;
+  background-color: lightskyblue;
+  color: black;
+  border-radius: 0.5rem;
+  border: black break 1px;
+  cursor: pointer;
+}
+
 .footer {
   display: flex;
   flex: 1;
@@ -103,10 +119,10 @@
   line-height: 1.5;
 }
 
-.logo {
+/* .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+} */
 
 @media (max-width: 600px) {
   .grid {

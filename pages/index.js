@@ -1,8 +1,67 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { db, authentication } from '../firebase/firebase-config'
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { useEffect, useState } from 'react';
+import { datas } from '../data/game_of_throne'
+import { collection, getDocs, setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import uuid from 'react-uuid';
+import Charactor from '../components/Charactor';
 
 export default function Home() {
+  const [logo, setLogo] = useState(null);
+  const [movieList, setMovieList] = useState(null);
+  const logoAdd = 'gs://movie--coments.appspot.com/Logo_Game_of_Thrones.png';
+  const collection_name = 'gameOT';
+
+
+  const fetchImageUrl = (ImageLink, setImage) => {
+    const storage = getStorage();
+    getDownloadURL(ref(storage, ImageLink))
+      .then((url) => {
+        setImage(url)
+      })
+  }
+
+  const addNewCharactorToDb = async (charactor) => {
+    await setDoc(doc(db, collection_name, charactor.firstName+charactor.lastName),
+      {
+        id: charactor.id,
+        firstName: charactor.firstName,
+        lastName: charactor.lastName,
+        fullName: charactor.fullName,
+        title: charactor.title,
+        family: charactor.family,
+        image: charactor.image,
+        imageUrl: charactor.imageUrl,
+        likes: 0,
+        dislikes: 0,
+        comments: [],
+      })
+  }
+
+  const asyncGetAllCollection = async () => {
+    const movie_collection = collection(db,collection_name);
+    const movie_snapshot = await getDocs(movie_collection);
+    const movie_list = movie_snapshot.docs.map(doc => doc.data());
+
+    console.log(movie_list);
+    setMovieList (movie_list);
+  }
+
+  fetchImageUrl(logoAdd, setLogo);
+
+  
+  useEffect(() => {
+      
+    //datas.map(data => addNewCharactorToDb(data));
+    //addNewCharactorToDb(datas[2]);
+    asyncGetAllCollection();
+   
+  }, [])
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,47 +71,14 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        {logo && <img className={styles.logoGT} src={logo} />}
+        <btn className={styles.btn}>Upload one charactor</btn>
+        {movieList && <Charactor charactor = {movieList[Math.floor(Math.random()*53)]}/>}
       </main>
+
+
+
+      {/* <iframe width="640" height="360" src="https://www.youtube.com/embed/giYeaKsXnsI" title="Game of Thrones Season 7: Official Trailer (HBO)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
 
       <footer className={styles.footer}>
         <a
