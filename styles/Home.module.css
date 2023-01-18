@@ -1,7 +1,16 @@
 .container {
   padding: 0 2rem;
 }
-
+.navbar {
+  display: flex;
+}
+.navbarUl {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -18,7 +27,44 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.userBlock {
+  display: flex;
+  flex-direction: row;
+  /* background-color: aquamarine; */
+  border-radius: 0.5rem;
+  border: solid white 0.1rem;
+  padding : 0.1rem 1rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+  margin-right: 1rem;
+}
+.signIn {
+  padding: 0.5rem;
+  background-color: lightyellow;
+  border-radius: 1rem;
+  color: black;
+  width: 5rem;
+  text-align: center;
+  cursor: pointer;
+}
+.logOut {
+  padding: 0.5rem;
+  background-color: lightcoral;
+  border-radius: 1rem;
+  color: black;
+  width: 5rem;
+  text-align: center;
+  cursor: pointer;
+}
+.trailerList {
+  text-align: center;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .btn {
   padding: 1rem;
   background-color: lightskyblue;
@@ -27,9 +73,168 @@
   border: black break 1px;
   cursor: pointer;
 }
+.commentItem {
+  position: relative;
+  width: 50rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  padding: 1rem 0;
+}
+.commentItemName {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1.5rem;
+  background-color: #1d3557;
+  border-radius: 0.5rem;
+  color: wheat;
+}
+.commentItemComment {
+  background-color: #457b9d;
+  padding: 0.5rem;
+  color: wheat;
+  word-wrap: break-word;
+}
+.newComment {
+  position: relative;
+  width: 48rem;
+  margin-top: 3rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  padding: 1.5rem 0;
+}
+.newCommentName {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1.5rem;
+  background-color: #a8dadc;
+  border-radius: 0.5rem;
+  color: black;
+}
+.newCommentComment {
+  background-color: #f1faee;
+  padding: 1rem;
+  padding-bottom: 3rem;
+  width: 96%;
+  color: black;
+  word-wrap: break-word;
+}
+.boardGameLayout {
+  display:flex;
+  flex-direction: row;
 
+}
+.option {
+
+  padding: 1rem;
+  background-color: lightskyblue;
+  color: white;
+  font-size: xx-large;
+  border-radius: 1rem;
+  border: black break 1px;
+  cursor: pointer;
+  width: 25rem;
+  margin: 3rem;
+}
+.btnLarge {
+  padding: 1rem;
+  background-color: lightskyblue;
+  color: white;
+  font-size: xx-large;
+  border-radius: 1rem;
+  border: black break 1px;
+  cursor: pointer;
+  width: 24rem;
+  margin: 3rem;
+}
+.logInAndNewUser {
+  padding: 2rem;
+  padding-bottom: 3rem;
+  border-radius: 1rem;
+  background-color: white;
+  color: black;
+}
+.input {
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+  width: 20rem;
+}
+.characters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 1rem;
+}
+.standard {
+  margin: 0.5rem;
+  text-align: center;
+  border: solid wheat 0.2rem;
+  border-radius: 1rem;
+  width: 20rem;
+  height: 35rem;
+  position: relative;
+}
+.details {
+  margin: 0.5rem;
+  text-align: center;
+  border: solid wheat 0.2rem;
+  border-radius: 1rem;
+  width: 50rem;
+  height: auto;
+  position: relative;
+}
+.characterImage {
+  max-width: 19rem;
+  max-height: 30rem;
+}
+.characterImageLarge {
+  max-width: 30rem;
+  max-height: 30rem;
+}
+.titleAndFamily {
+  font-size: xx-large;
+  margin: 0.5rem;
+}
+.characterContent {
+  font-size: x-large;
+  margin: 1rem;
+}
+.newComment {
+  margin:1rem;
+}
+.newCommentComment{
+  margin:1rem;
+}
+.infoBar {
+  position: absolute;
+  bottom: 0;
+  margin: 0.5rem;
+  display:flex;
+  flex-direction: row;
+}
+.likeornot {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display:flex;
+  flex-direction: row;
+  gap:2rem;
+  align-items: flex-start;
+}
+
+.comments {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 7rem;
+} 
 .footer {
   display: flex;
+  flex-direction: column;
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
